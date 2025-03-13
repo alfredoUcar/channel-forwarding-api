@@ -8,7 +8,7 @@ down:
 	docker-compose down --remove-orphans
 
 test:
-	pytest --maxfail=1 --disable-warnings -q
+	docker-compose run --rm app pytest --maxfail=1 --disable-warnings -q
 
 lint:
 	docker-compose run --rm app ruff check /app
@@ -17,6 +17,3 @@ lint:
 fix:
 	docker-compose run --rm app ruff check --fix /app
 	docker-compose run --rm app black /app
-
-stop:
-	docker-compose down
