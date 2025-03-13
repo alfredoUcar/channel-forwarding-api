@@ -1,5 +1,7 @@
 from typing import Dict
 from app.services.channel import Channel
+
+
 class ChannelRouter:
     def __init__(self, channels: Dict[str, Channel]):
         self.channels = channels

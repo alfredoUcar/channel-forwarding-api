@@ -12,10 +12,9 @@ def test_forwards_request_to_correct_channel():
     channel_a = MagicMock(spec=Channel)
     channel_b = MagicMock(spec=Channel)
 
-    app.dependency_overrides[get_channel_router] = lambda: ChannelRouter({
-        "topic_a": channel_a,
-        "topic_b": channel_b
-    })
+    app.dependency_overrides[get_channel_router] = lambda: ChannelRouter(
+        {"topic_a": channel_a, "topic_b": channel_b}
+    )
 
     response = client.post(
         "/assistance-request/",
@@ -31,10 +30,11 @@ def test_forwards_request_to_correct_channel():
 def test_channel_not_invoked_when_invalid_topic():
     channel = MagicMock(spec=Channel)
 
-    app.dependency_overrides[ChannelRouter] = lambda: ChannelRouter({
-        "some_topic": channel,
-    })
-
+    app.dependency_overrides[ChannelRouter] = lambda: ChannelRouter(
+        {
+            "some_topic": channel,
+        }
+    )
 
     response = client.post(
         "/assistance-request/",

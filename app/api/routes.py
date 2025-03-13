@@ -8,11 +8,10 @@ from app.logger import logger
 
 router = APIRouter()
 
+
 def get_channel_router():
-    return ChannelRouter({
-        "sales": SlackChannel(),
-        "pricing": EmailChannel()
-    })
+    return ChannelRouter({"sales": SlackChannel(), "pricing": EmailChannel()})
+
 
 @router.get("/", response_class=HTMLResponse)
 async def home():
@@ -29,7 +28,10 @@ async def home():
 
 
 @router.post("/assistance-request/")
-def assistance_request(request: AssistanceRequest, channel_router: ChannelRouter = Depends(get_channel_router)):
+def assistance_request(
+    request: AssistanceRequest,
+    channel_router: ChannelRouter = Depends(get_channel_router),
+):
     try:
         channel = channel_router.get(request.topic)
     except ValueError as e:
