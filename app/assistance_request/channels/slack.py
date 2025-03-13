@@ -1,10 +1,10 @@
 import requests
-from app.config import settings
-from app.services.channel import Channel
-from app.logger import logger
+from .base_channel import BaseChannel
+from app.core.logger import logger
+from app.core.settings import settings
 
 
-class SlackChannel(Channel):
+class SlackChannel(BaseChannel):
     def send(self, message: str):
         payload = {"text": message}
         logger.info(f"Sending message to Slack: {payload}")

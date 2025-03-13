@@ -1,10 +1,10 @@
 from fastapi import APIRouter, Depends, HTTPException
 from fastapi.responses import HTMLResponse
-from app.models import AssistanceRequest
-from app.services.channel_router import ChannelRouter
-from app.services.slack import SlackChannel
-from app.services.email import EmailChannel
-from app.logger import logger
+from app.assistance_request.models import AssistanceRequest
+from app.assistance_request.channels.channel_router import ChannelRouter
+from app.assistance_request.channels.slack import SlackChannel
+from app.assistance_request.channels.email import EmailChannel
+from app.core.logger import logger
 
 router = APIRouter()
 

@@ -1,12 +1,12 @@
 import pytest
 from unittest.mock import MagicMock
-from app.services.channel_router import ChannelRouter
-from app.services.channel import Channel
+from app.assistance_request.channels.channel_router import ChannelRouter
+from app.assistance_request.channels.base_channel import BaseChannel
 
 def test_returns_correct_channel():
     # Create mock channels
-    channel_a = MagicMock(spec=Channel)
-    channel_b = MagicMock(spec=Channel)
+    channel_a = MagicMock(spec=BaseChannel)
+    channel_b = MagicMock(spec=BaseChannel)
     
     router = ChannelRouter({
         "topic_a": channel_a,
@@ -18,7 +18,7 @@ def test_returns_correct_channel():
     assert router.get("topic_b") == channel_b
 
 def test_raises_error_for_unknown_topic():
-    channel_a = MagicMock(spec=Channel)
+    channel_a = MagicMock(spec=BaseChannel)
     router = ChannelRouter({"topic_a": channel_a})
     
     # Should raise ValueError for unsupported topic
