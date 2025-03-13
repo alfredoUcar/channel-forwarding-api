@@ -1,14 +1,8 @@
+from typing import Dict
 from app.services.channel import Channel
-from app.services.slack import SlackChannel
-from app.services.email import EmailChannel
-
 class ChannelRouter:
-    def __init__(self):
-        # Default mapping of topics to channels
-        self.channels = {
-            "sales": SlackChannel(),
-            "pricing": EmailChannel(),
-        }
+    def __init__(self, channels: Dict[str, Channel]):
+        self.channels = channels
 
     def get(self, topic: str) -> Channel:
         if topic not in self.channels:

@@ -1,13 +1,18 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, Depends, HTTPException
 from fastapi.responses import HTMLResponse
 from app.models import AssistanceRequest
 from app.services.channel_router import ChannelRouter
+from app.services.slack import SlackChannel
+from app.services.email import EmailChannel
 from app.logger import logger
 
 router = APIRouter()
 
-# Initialize the router
-channel_router = ChannelRouter()
+def get_channel_router():
+    return ChannelRouter({
+        "sales": SlackChannel(),
+        "pricing": EmailChannel()
+    })
 
 @router.get("/", response_class=HTMLResponse)
 async def home():
@@ -24,7 +29,7 @@ async def home():
 
 
 @router.post("/assistance-request/")
-def assistance_request(request: AssistanceRequest):
+def assistance_request(request: AssistanceRequest, channel_router: ChannelRouter = Depends(get_channel_router)):
     try:
         channel = channel_router.get(request.topic)
     except ValueError as e:
