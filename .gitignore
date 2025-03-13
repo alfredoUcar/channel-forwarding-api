@@ -1,0 +1,34 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+.venv/
+env/
+
+# Docker files
+*.log
+docker-compose.override.yml
+
+# Environment variables
+.env
+
+# Editor/IDE
+.vscode/
+.idea/
+
+# Testing artifacts
+.tox/
+coverage/
+*.coverage
+nosetests.xml
+pytest_cache/
+junit.xml
+
+# Ruff & Black cache
+.ruff_cache/
+.black_cache/
+
+# MacOS files
+.DS_Store
