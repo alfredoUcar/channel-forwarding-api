@@ -15,6 +15,20 @@ SLACK_WEBHOOK_URL=<your_slack_webhook_url>
 > [!IMPORTANT]
 > Slack integration is the only implemented channel and requires a working hook.
 
+## Usage
+
+Once the the server is running, you can send a POST request to `/assistance-request` with the following payload:
+
+```json
+{
+  "topic": "sales",
+  "description": "I need help with my order"
+}
+```
+
+> [!TIP]
+> Use the Swagger UI interactive docs at [http://localhost:8000/docs](http://localhost:8000/docs) to test the endpoint.
+
 ## Start server
 
 Starts the server in development mode on background.
