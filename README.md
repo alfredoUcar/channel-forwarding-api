@@ -165,7 +165,7 @@ Although it fulfills the basic functionality required, there is plenty of room f
 
 To add a new channel add a new class in `app/assistance_request/channels` (i.g: `sms.py`) that inherits from `BaseChannel` and implements the `send` method.
 
-To use the new channel go to method `get_channel_router` in `app/assistance_request/api_routes.py` where `ChannelRouter` is instantiated and add a the new case or modify an existing one.
+To use the new channel go to method `get_channel_router` in `app/assistance_request/api_routes.py` where `ChannelRouter` is instantiated and add the new case or modify an existing one.
 
 Let's say we just created a new `SMSChannel` and want to link it to a new topic `support`. We would do the following modification:
 
