@@ -11,12 +11,12 @@ test:
 	pytest --maxfail=1 --disable-warnings -q
 
 lint:
-	ruff check .
-	black --check .
+	docker-compose run --rm app ruff check /app
+	docker-compose run --rm app black --check /app
 
 fix:
-	ruff --fix .
-	black .
+	docker-compose run --rm app ruff check --fix /app
+	docker-compose run --rm app black /app
 
 stop:
 	docker-compose down
