@@ -1,9 +1,19 @@
 Solution to backend challenge described in [CHALLENGE.md](CHALLENGE.md).
+Below are the instructions to run the server and development notes about the implementation and further improvements that could be done.
 
 ## Requirements
 
 - Docker
 - Docker Compose
+
+Setup a `.env` file with the following content:
+
+```bash
+SLACK_WEBHOOK_URL=<your_slack_webhook_url>
+```
+
+> [!IMPORTANT]
+> Slack integration is the only implemented channel and requires a working hook.
 
 ## Start server
 
@@ -44,3 +54,9 @@ Run linter
 make lint   # just check
 make fix    # autofix
 ```
+
+## Notes
+
+### Approach
+
+- Since channel selection is based on topic and just determines the logic/behavior, I've implemented a Strategy pattern to handle this using `ChannelRouter` class to select the right channel, any concrete implementation of `Channel`.

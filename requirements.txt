@@ -4,5 +4,6 @@ pydantic
 pydantic-settings
 requests
 pytest
+httpx
 ruff
 black
